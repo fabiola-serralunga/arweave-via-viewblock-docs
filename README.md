@@ -20,8 +20,11 @@ Sister project of [arweave-via-ario](https://arweave-via-ario.pages.dev). Both u
 
 ## Anything worth saving? 
 
-**Yes, the health of the canonical gateway arweave.net.** The rest of the gateways on the list are forgettable.
-First, we avoid relying on a data source that is highly likely to modify its gateway. Second, the number of live gateways provided by Viewblock is scarce, with the canonical 'arweave.net' being the only one truly available. Fourth, we understand that Viewblock’s fundamental purpose today is not to provide an updated list of gateways—perhaps because AR.IO efficiently fulfills that role—but rather to serve as a blockchain explorer.
+**The Viewblock gateway list is a stale list, but it works for checking the health of the canonical gateway arweave.net and we can fetch a list of nodes directly from arweave.net/peers.** 
+
+However, direct node IPs usually communicate over HTTP on port 1984. To execute HTTPS payloads, read data securely, and avoid CORS or SSL issues from browser or client environments, we must route queries through gateways functioning as reverse proxies (like arweave.net or community gateways running Nginx/Caddy on port 443) or validate which individual peer nodes have active TLS/SSL terminations enabled. 
+
+The rest of the gateways on the list are forgettable. First, we avoid relying on a data source that is highly likely to modify its gateway. Second, the number of live gateways provided by Viewblock is scarce, with the canonical 'arweave.net' being the only one truly available. Fourth, we understand that Viewblock’s fundamental purpose today is not to provide an updated list of gateways—perhaps because AR.IO efficiently fulfills that role—but rather to serve as a blockchain explorer.
 
 ## Viewblock
 
