@@ -20,11 +20,11 @@ Sister project of [arweave-via-ario](https://arweave-via-ario.pages.dev). Both u
 
 ## Anything worth saving? 
 
-**The Viewblock gateway list is a stale list, but it works for checking the health of the canonical gateway arweave.net and we can fetch a list of nodes directly from arweave.net/peers.** 
+**The Viewblock gateway list is a stale list, but it works for checking the health of the canonical gateway arweave.net and we can fetch a list of nodes directly from arweave.net/peers; like anything gateway...** 
 
-However, direct node IPs usually communicate over HTTP on port 1984. To execute HTTPS payloads, read data securely, and avoid CORS or SSL issues from browser or client environments, we must route queries through gateways functioning as reverse proxies (like arweave.net or community gateways running Nginx/Caddy on port 443) or validate which individual peer nodes have active TLS/SSL terminations enabled. 
+First, this avoids dependency on a data source prone to gateway list modifications. Second, Viewblock offers very few live gateways, with the canonical 'arweave.net' being the only one truly active. Ultimately, Viewblock's core focus today is operating as a block explorer rather than a gateway registry, especially since AR.IO now efficiently handles that role.
 
-The rest of the gateways on the list are forgettable. First, we avoid relying on a data source that is highly likely to modify its gateway. Second, the number of live gateways provided by Viewblock is scarce, with the canonical 'arweave.net' being the only one truly available. Fourth, we understand that Viewblock’s fundamental purpose today is not to provide an updated list of gateways—perhaps because AR.IO efficiently fulfills that role—but rather to serve as a blockchain explorer.
+Furthermore, in the Arweave chain, we can query arweave.net/peers or arweave.tokio/peers or anything-gateway/peers to fetch a live gossip sample of the nodes behind the network (~200–320 entries, though typically only 40–45% are reachable at any given moment — the list is gossip, not a registry). Raw nodes speak plain HTTP on port 1984 and serve data unpredictably: the genesis transaction is available on ~85–90% of reachable nodes, but arbitrary or recent transactions are rarely served on demand. For these two reasons — browser mixed-content restrictions (an HTTPS page cannot fetch http://ip:1984) and the lack of reliable on-demand serving — end-user data delivery belongs to the gateway layer (arweave.net and AR.IO gateways on port 443), which index the full ledger and serve it over HTTPS. Raw peers remain valuable as network-health telemetry (liveness, latency, sync height), not as a serving layer.
 
 ## Viewblock
 
